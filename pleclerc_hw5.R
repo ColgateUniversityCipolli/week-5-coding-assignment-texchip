@@ -1,31 +1,3 @@
-\documentclass{article}
-\usepackage[margin=1.0in]{geometry} % To set margins
-\usepackage{amsmath}  % This allows me to use the align functionality.
-                      % If you find yourself trying to replicate
-                      % something you found online, ensure you're
-                      % loading the necessary packages!
-\usepackage{amsfonts} % Math font
-\usepackage{fancyvrb}
-\usepackage{hyperref} % For including hyperlinks
-\usepackage[shortlabels]{enumitem}% For enumerated lists with labels specified
-                                  % We had to run tlmgr_install("enumitem") in R
-\usepackage{float}    % For telling R where to put a table/figure
-\usepackage{natbib}        %For the bibliography
-\bibliographystyle{apalike}%For the bibliography
-
-\begin{document}
-\begin{enumerate}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% QUESTION 1
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\item In Lab 3, you wrangled data from Essentia, Essentia models and LIWC. Rework your 
-solution to Lab 3 using \texttt{tidyverse} \citep{tidyverse} instead of base \texttt{R}.
-Specifically, rewrite your code for steps 1-4 of task 2 using \texttt{tidyverse} \citep{tidyverse}. 
-Make sure to address any issues I noted in your code file, and ensure that your code 
-runs in the directory as it is set up.
-<<size="scriptsize", message=FALSE, warning=FALSE>>=
 
 library(stringr)
 library(jsonlite)
@@ -107,7 +79,7 @@ ggplot(data = training.data) +
   geom_boxplot(aes(x = artist, y = `spectral energy`)) +
   geom_hline(yintercept = testing.data$`spectral energy`,  
              color = "orange", linetype = "dashed", size = 1) + 
-  theme_bw() +  
+  theme_bw() +  # Remove grey background
   xlab("Artist") +
   ylab("Spectral Energy") +
   labs(title = "Comparison of Spectral Energy Values", 
@@ -120,14 +92,10 @@ ggplot(data = training.data) +
   geom_boxplot(aes(x = artist, y = Linguistic)) +
   geom_hline(yintercept = testing.data$Linguistic,  
              color = "orange", linetype = "dashed", size = 1) + 
-  theme_bw() +
+  theme_bw() +  # Remove grey background
   xlab("Artist") +
   ylab("Linguistic Value") +
   labs(title = "Comparison of Linguistic Values", 
        caption = "Box plot of linguistic value between artists. Linguistic value of 'Allentown' in dashed orange.") +
   theme(plot.title = element_text(hjust = 0.5),
         plot.caption = element_text(hjust = 0.5))
-@
-\end{enumerate}
-\bibliography{bibliography}
-\end{document}
